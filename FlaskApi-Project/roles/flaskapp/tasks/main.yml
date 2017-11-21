@@ -1,0 +1,67 @@
+---
+# tasks file for flaskapp
+- name: Update apt packet manager
+  become: yes
+  shell: apt-get update
+
+- name: Install pip
+  become: yes
+  apt:
+    name: python
+    state: present
+
+- name: Install apache2
+  become: yes
+  apt:
+    name: apache2
+    state: present
+
+- name: Install apache2 wsgi flask module
+  become: yes
+  apt:
+    name: libapache2-mod-wsgi
+    state: present
+
+- name: Install virtualenv
+  become: yes
+  apt:
+    name: virtualenv
+    state: present
+
+- name: Copy requirements.txt for virtualenv
+  copy:
+    src: /Users/Gabriel/Ansible/flaskapi/requirements.txt
+    dest: /home/ubuntu/requirements.txt
+
+- name: Create virtualenv and install modules
+  become: yes
+  pip:
+    virtualenv: /var/www/FlaskApi/FlaskApi/flaskapi
+    virtualenv_python: python2.7
+    requirements: /home/ubuntu/requirements.txt
+
+- name: Configure FlaskApi virtualhost
+  become: yes
+  copy: src=FlaskApi.conf dest=/etc/apache2/sites-available/FlaskApi.conf
+  notify: apache2 restart
+
+- name: Enable FlaskApi virtualhost
+  become: yes
+  shell: a2ensite FlaskApi
+  notify: apache2 restart
+
+- name: Update FlaskApi virtualhost with Server's IP
+  become: yes
+  shell: ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4) && sudo sed -i -e "s/ServerName .*/ServerName $ip/g" /etc/apache2/sites-enabled/FlaskApi.conf
+  notify: apache2 restart
+
+- name: Check __init__.py exists
+  become: yes
+  stat: path=/var/www/FlaskApi/FlaskApi/__init__.py
+  register: FlaskApi
+
+- name: Create FlaskApi structure
+  become: yes
+  copy: src=FlaskApi dest=/var/www/
+  when: FlaskApi.stat.exists == False
+  notify: apache2 restart

@@ -1,9 +1,6 @@
 ---
-- hosts: ec2
+- hosts: local
   gather_facts: false
-  become: yes
-  pre_tasks:
-  - name: Check if python2 is installed, otherwise install for Ansible
-    raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
-    register: output
-    changed_when: output.stdout != ""
+  roles:
+    - launchEC2
+    #- installPython

@@ -1,0 +1,6 @@
+---
+# tasks file for installPython
+- name: Installs python on ec2 Ubuntu 16 AMI
+  raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
+  register: output
+  changed_when: output.stdout != ""

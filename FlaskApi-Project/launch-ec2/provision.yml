@@ -5,8 +5,8 @@
   gather_facts: False
 
   vars_files:
-    - /vars/variables.yml
-    - /vars/aws-creds.yml
+    - /Users/Gabriel/Ansible/playbooks/launch-ec2/vars/variables.yml
+    - /Users/Gabriel/Ansible/playbooks/launch-ec2/vars/aws-creds.yml
 
   tasks:
 

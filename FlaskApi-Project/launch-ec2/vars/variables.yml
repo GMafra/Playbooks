@@ -35,6 +35,6 @@ ec2_instances:
     group: ['http', 'ssh'] 
     instance_tags: 
         Name: python_api
-    exact_count: 0
+    exact_count: 1
     count_tag: 
         Name: python_api

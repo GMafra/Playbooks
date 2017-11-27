@@ -8,10 +8,6 @@ from botocore.exceptions import ClientError
 # Creating an app for flask
 app = Flask(__name__)
 
-aws_region = 'us-east-2'
-aws_key = '**'
-aws_secret = '**'
-
 app.config['BASIC_AUTH_USERNAME'] = 'user'
 app.config['BASIC_AUTH_PASSWORD'] = 'test'
 

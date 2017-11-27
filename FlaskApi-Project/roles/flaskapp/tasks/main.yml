@@ -1,19 +1,9 @@
 ---
 # tasks file for flaskapp
-- name: Update apt packet manager
-  become: yes
-  shell: apt-get update
-
 - name: Install pip
   become: yes
   apt:
     name: python
-    state: present
-
-- name: Install apache2
-  become: yes
-  apt:
-    name: apache2
     state: present
 
 - name: Install apache2 wsgi flask module
@@ -30,7 +20,7 @@
 
 - name: Copy requirements.txt for virtualenv
   copy:
-    src: /Users/Gabriel/Ansible/flaskapi/requirements.txt
+    src: files/requirements.txt
     dest: /home/ubuntu/requirements.txt
 
 - name: Create virtualenv and install modules

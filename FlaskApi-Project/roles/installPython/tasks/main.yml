@@ -1,6 +1,6 @@
 ---
 # tasks file for installPython
-- name: Install python on ec2 Ubuntu 16 AMI for Ansible
+- name: Enforces that python in installed on Debian distros
   raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
   register: output
   changed_when: output.stdout != ""

@@ -5,4 +5,4 @@
   roles:
     - installPython
     - installApache
-    - flaskapp
+    - flaskApi

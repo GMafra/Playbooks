@@ -35,7 +35,7 @@
   notify: apache2 restart
 
 - name: Update FlaskApi virtualhost with Server's IP
-  shell: ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4) && sudo sed -i -e "s/ServerName .*/ServerName $ip/g" /etc/apache2/sites-enabled/FlaskApi.conf
+  shell: ip=$(curl http://169.254.169.254/latest/meta-data/public-ipv4) && sed -i -e "s/ServerName .*/ServerName $ip/g" /etc/apache2/sites-enabled/FlaskApi.conf
   notify: apache2 restart
 
 - name: Check __init__.py exists

@@ -5,6 +5,8 @@
 ec2_region: sa-east-1
 instances_keypair: api
 image_id: ami-466b132a
+ec2_access_key: **
+ec2_secret_key: **
 
 # security groups to be created
 security_groups:
@@ -40,6 +42,3 @@ ec2_instances:
     exact_count: 1
     count_tag:
         Name: python_api
-
-ec2_access_key: AKIAIKNLEQ3ZFM3VILBA
-ec2_secret_key: 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

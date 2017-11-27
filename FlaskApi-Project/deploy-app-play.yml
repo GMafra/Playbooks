@@ -1,6 +1,8 @@
 ---
-- hosts: local
+- hosts: ec2
   gather_facts: false
+  become: yes
   roles:
-    - launchEC2
-    #- installPython
+    - installPython
+    - installApache
+    - flaskapp

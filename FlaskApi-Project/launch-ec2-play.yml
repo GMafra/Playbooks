@@ -1,13 +1,5 @@
-- name: Deploy flask environment
+---
+- hosts: local
   gather_facts: false
-  hosts: ec2
-  pre_tasks:
-  - name: Install python2 for Ansible
-    become: yes
-    raw: bash -c "test -e /usr/bin/python || (apt -qqy update && apt install -qqy python-minimal)"
-    register: output
-    changed_when: output.stdout != ""
-  - name: Gathering Facts
-    setup:
   roles:
-  - FlaskApi
+    - launchEC2

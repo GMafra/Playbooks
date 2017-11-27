@@ -12,7 +12,7 @@ app.config['BASIC_AUTH_USERNAME'] = 'user'
 app.config['BASIC_AUTH_PASSWORD'] = 'test'
 
 # Configuring session settings
-session = boto3.setup_default_session(region_name='region',aws_access_key_id='acesskey',aws_secret_access_key='secretkey')
+session = boto3.setup_default_session(region_name='**',aws_access_key_id='**',aws_secret_access_key='**')
 elb_client = boto3.client('elb')
 ec2_client = boto3.client('ec2')
 
